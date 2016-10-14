@@ -1,4 +1,4 @@
-package soft.teams.model;
+package sample.players.model;
 
 /**
  * Created by Paulo on 10/10/2016.

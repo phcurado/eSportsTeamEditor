@@ -1,45 +1,83 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import soft.players.model.Player;
+import sample.players.model.Player;
+import sample.players.view.PlayerOverviewController;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
+    private Stage primaryStage;
+    private BorderPane rootLayout;
+
+    private ObservableList<Player> playerData = FXCollections.observableArrayList();
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Aplicacao.fxml"));
-        primaryStage.setTitle("Esports Manager Editor");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+    public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Esports Manager Editor");
 
-        
-        Player rtz = new Player("rtz", 10, 10, 90, 68, 30, 80, 85, 78, 83, 90, 92, 85);
-        Player sumail = new Player("sumail", 10, 10, 80, 75, 30, 86, 90, 87, 90, 88, 92, 80);
-        Player miracle = new Player("miracle", 10, 10, 86, 77, 40, 88, 92, 95, 88, 97, 92, 85);
-        Player dendi = new Player("dendi", 10, 10, 78, 65, 30, 84, 80, 82, 83, 78, 70, 75);
-        Player w33haa = new Player("w33haa", 10, 10, 78, 70, 30, 85, 87, 85, 86, 88, 86, 85);
-        Player matumbaman = new Player("matumbaman", 10, 10, 95, 68, 30, 70, 80, 82, 83, 82, 92, 85);
-        Player Universe = new Player("Universe", 10, 10, 70, 88, 30, 86, 87, 90, 83, 83, 82, 85);
-        Player puppey = new Player("puppey", 10, 10, 45, 40, 84, 75, 75, 80, 85, 70, 75, 90);
-        Player zai = new Player("zai", 10, 10, 75, 85, 86, 85, 75, 80, 80, 85, 85, 82);
-        Player sonneiko = new Player("sonneiko", 10, 10, 65, 50, 90, 85, 75, 80, 80, 81, 85, 85);
+        initRootLayout();
 
-        getPosition(rtz);
-        getPosition(sumail);
-        getPosition(miracle);
-        getPosition(dendi);
-        getPosition(w33haa);
-        getPosition(matumbaman);
-        getPosition(Universe);
-        getPosition(puppey);
-        getPosition(zai);
-        getPosition(sonneiko);
+        showAplicacaoOverview();
+
+
+
+        playerData.add(new Player("Arthour", "Babaev", "Arteezy", 20, 9018, 500000, 8000, 88, 88, 65, 82, 40, 87, 82, 80, 85, 90, 78, 88, 50, 82, 80, 78, 78));
+              playerData.add(new Player("Amer", "Al", "Miracle", 19, 8965, 500000, 8000, 90, 86, 67, 84, 50, 90, 88, 87, 88, 84, 82, 94, 50, 85, 82, 75, 75));
+        playerData.add(new Player("Saahil", "Arora", "Universe", 27, 8297, 500000, 8000, 87, 70, 90, 80, 55, 86, 86, 87, 88, 80, 85, 87, 50, 83, 88, 78, 60));
+            playerData.add(new Player("Paulo", "Curado", "Sabs", 26, 3800, 500000, 8000, 60, 65, 50, 68, 72, 70, 60, 65, 62, 65, 62, 70, 50, 80, 70, 70, 80));
+        //playerData.add(new Player("sumail", 80, 75, 30, 86, 87));
+
     }
 
+    public ObservableList<Player> getPlayerData() {
+        return playerData;
+    }
+
+    public void initRootLayout() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+            Scene scene = new Scene(rootLayout);
+            // Show the scene containing the root layout.
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAplicacaoOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("players/view/Aplicacao.fxml"));
+            AnchorPane personOverview = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(personOverview);
+
+            PlayerOverviewController controller = loader.getController();
+            controller.setMain(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -53,25 +91,20 @@ public class Main extends Application {
         double pos5;
 
         System.out.println(player.getNickName());
-        pos1 = 0.36*player.getFarm() + 0.1*player.getPush() + 0*player.getSupport() + 0.02*player.getRotation() + 0.16*player.getFighting()
-                + 0.07*player.getPositioning() + 0.04*player.getMapAwareness() + 0.07*player.getAggression() + 0.07*player.getReflex() + 0.11*player.getDecisionMaking();
-        System.out.println("Carry Role: " + (int)pos1);
+        pos1 = 0.65 * player.getFarm() + 0.05 * player.getIndependency() + 0 * player.getSupport() + 0.05 * player.getRotation() + 0.25 * player.getFighting();
+        System.out.println("Carry Role: " + (int) pos1);
 
-        pos2 = 0.16*player.getFarm() + 0.06*player.getPush() + 0*player.getSupport() + 0.09*player.getRotation() + 0.27*player.getFighting()
-                + 0.08*player.getPositioning() + 0.07*player.getMapAwareness() + 0.16*player.getAggression() + 0.03*player.getReflex() + 0.08*player.getDecisionMaking();
-        System.out.println("Mid Role: " + (int)pos2);
+        pos2 = 0.30 * player.getFarm() + 0.10 * player.getIndependency() + 0 * player.getSupport() + 0.15 * player.getRotation() + 0.45 * player.getFighting();
+        System.out.println("Mid Role: " + (int) pos2);
 
-        pos3 = 0.12*player.getFarm() + 0.25*player.getPush() + 0*player.getSupport() + 0.06*player.getRotation() + 0.25*player.getFighting()
-                + 0.03*player.getPositioning() + 0.03*player.getMapAwareness() + 0.15*player.getAggression() + 0.02*player.getReflex() + 0.09*player.getDecisionMaking();
-        System.out.println("Off Role: " + (int)pos3);
+        pos3 = 0.15 * player.getFarm() + 0.55 * player.getIndependency() + 0 * player.getSupport() + 0.1 * player.getRotation() + 0.20 * player.getFighting();
+        System.out.println("Off Role: " + (int) pos3);
 
-        pos4 = 0.05*player.getFarm() + 0*player.getPush() + 0.28*player.getSupport() + 0.17*player.getRotation() + 0.18*player.getFighting()
-                + 0.03*player.getPositioning() + 0.03*player.getMapAwareness() + 0.15*player.getAggression() + 0.02*player.getReflex() + 0.09*player.getDecisionMaking();
-        System.out.println("Supp 4 Role: " + (int)pos4);
+        pos4 = 0.05 * player.getFarm() + 0.05 * player.getIndependency() + 0.25 * player.getSupport() + 0.5 * player.getRotation() + 0.15 * player.getFighting();
+        System.out.println("Supp 4 Role: " + (int) pos4);
 
-        pos5 = 0*player.getFarm() + 0*player.getPush() + 0.4*player.getSupport() + 0.1*player.getRotation() + 0.15*player.getFighting()
-                + 0.03*player.getPositioning() + 0.08*player.getMapAwareness() + 0.1*player.getAggression() + 0.02*player.getReflex() + 0.12*player.getDecisionMaking();
-        System.out.println("Supp 5 Role: " + (int)pos5);
+        pos5 = 0 * player.getFarm() + 0.1 * player.getIndependency() + 0.7 * player.getSupport() + 0.1 * player.getRotation() + 0.1 * player.getFighting();
+        System.out.println("Supp 5 Role: " + (int) pos5);
 
     }
 }

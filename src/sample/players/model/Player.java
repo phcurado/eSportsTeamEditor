@@ -1,4 +1,4 @@
-package soft.players.model;
+package sample.players.model;
 
 /**
  * Created by Paulo on 10/10/2016.
@@ -18,18 +18,18 @@ public class Player {
     private String teamId;
     /*  Technique   */
     private int farm;
-    private int push;
+    private int independency;
+    private int fighting;
     private int support;
     private int rotation;
-    private int fighting;
     private int positioning;
     private int mapAwareness;
     private int aggression;
+    private int reflex;
+    private int decisionMaking;
     private int potential;
     /*  Personal Behavior   ps: some are hidden from the user*/
     private int happiness;
-    private int reflex;
-    private int decisionMaking;
     private int intelligence;
     private int concentration;
     private int leadership;
@@ -47,21 +47,34 @@ public class Player {
     public Player() {
     }
 
-    public Player(String nickName, int value, int salary, int farm, int push, int support, int rotation, int fighting, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking) {
+
+    public Player(String firstName, String lastName, String nickName, int age, int rank, int value, int salary, int popularity, int farm, int independency, int fighting, int support, int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking, int potential, int happiness, int intelligence, int concentration, int leadership, int rage) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.nickName = nickName;
+        this.age = age;
+        this.rank = rank;
         this.value = value;
         this.salary = salary;
+        this.popularity = popularity;
         this.farm = farm;
-        this.push = push;
+        this.independency = independency;
+        this.fighting = fighting;
         this.support = support;
         this.rotation = rotation;
-        this.fighting = fighting;
         this.positioning = positioning;
         this.mapAwareness = mapAwareness;
         this.aggression = aggression;
         this.reflex = reflex;
         this.decisionMaking = decisionMaking;
+        this.potential = potential;
+        this.happiness = happiness;
+        this.intelligence = intelligence;
+        this.concentration = concentration;
+        this.leadership = leadership;
+        this.rage = rage;
     }
+
 
     public String getId() {
         return id;
@@ -151,12 +164,20 @@ public class Player {
         this.farm = farm;
     }
 
-    public int getPush() {
-        return push;
+    public int getIndependency() {
+        return independency;
     }
 
-    public void setPush(int push) {
-        this.push = push;
+    public void setIndependency(int independency) {
+        this.independency = independency;
+    }
+
+    public int getFighting() {
+        return fighting;
+    }
+
+    public void setFighting(int fighting) {
+        this.fighting = fighting;
     }
 
     public int getSupport() {
@@ -173,14 +194,6 @@ public class Player {
 
     public void setRotation(int rotation) {
         this.rotation = rotation;
-    }
-
-    public int getFighting() {
-        return fighting;
-    }
-
-    public void setFighting(int fighting) {
-        this.fighting = fighting;
     }
 
     public int getPositioning() {
@@ -207,22 +220,6 @@ public class Player {
         this.aggression = aggression;
     }
 
-    public int getPotential() {
-        return potential;
-    }
-
-    public void setPotential(int potential) {
-        this.potential = potential;
-    }
-
-    public int getHappiness() {
-        return happiness;
-    }
-
-    public void setHappiness(int happiness) {
-        this.happiness = happiness;
-    }
-
     public int getReflex() {
         return reflex;
     }
@@ -237,6 +234,22 @@ public class Player {
 
     public void setDecisionMaking(int decisionMaking) {
         this.decisionMaking = decisionMaking;
+    }
+
+    public int getPotential() {
+        return potential;
+    }
+
+    public void setPotential(int potential) {
+        this.potential = potential;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public void setHappiness(int happiness) {
+        this.happiness = happiness;
     }
 
     public int getIntelligence() {
