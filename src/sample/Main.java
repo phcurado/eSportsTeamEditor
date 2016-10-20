@@ -31,10 +31,10 @@ public class Main extends Application {
 
 
 
-        playerData.add(new Player("Arthour", "Babaev", "Arteezy", 20, 9018, 500000, 8000, 88, 88, 65, 82, 40, 87, 82, 80, 85, 90, 78, 88, 50, 82, 80, 78, 78));
-              playerData.add(new Player("Amer", "Al", "Miracle", 19, 8965, 500000, 8000, 90, 86, 67, 84, 50, 90, 88, 87, 88, 84, 82, 94, 50, 85, 82, 75, 75));
-        playerData.add(new Player("Saahil", "Arora", "Universe", 27, 8297, 500000, 8000, 87, 70, 90, 80, 55, 86, 86, 87, 88, 80, 85, 87, 50, 83, 88, 78, 60));
-            playerData.add(new Player("Paulo", "Curado", "Sabs", 26, 3800, 500000, 8000, 60, 65, 50, 68, 72, 70, 60, 65, 62, 65, 62, 70, 50, 80, 70, 70, 80));
+        playerData.add(new Player("Arthour", "Babaev", "Arteezy", "01/07/1996", 9018, 500000, 8000, 88, 88, 65, 82, 40, 87, 82, 80, 85, 90, 78, 88, 50, 82, 80, 78, 78, "PLAYER_000001"));
+              playerData.add(new Player("Amer", "Al", "Miracle", "20/06/1997", 8965, 500000, 8000, 90, 86, 67, 84, 50, 90, 88, 87, 88, 84, 82, 94, 50, 85, 82, 75, 75, "PLAYER_000002"));
+        playerData.add(new Player("Saahil", "Arora", "Universe", "11/10/1989", 8297, 500000, 8000, 87, 70, 90, 80, 55, 86, 86, 87, 88, 80, 85, 87, 50, 83, 88, 78, 60, "PLAYER_000003"));
+            playerData.add(new Player("Paulo", "Curado", "Sabs", "05/10/1990", 3800, 500000, 8000, 60, 65, 67, 68, 72, 70, 60, 65, 62, 65, 62, 70, 50, 80, 70, 70, 80, "PLAYER_000004"));
         //playerData.add(new Player("sumail", 80, 75, 30, 86, 87));
 
     }
@@ -90,21 +90,11 @@ public class Main extends Application {
         double pos4;
         double pos5;
 
-        System.out.println(player.getNickName());
         pos1 = 0.65 * player.getFarm() + 0.05 * player.getIndependency() + 0 * player.getSupport() + 0.05 * player.getRotation() + 0.25 * player.getFighting();
-        System.out.println("Carry Role: " + (int) pos1);
-
         pos2 = 0.30 * player.getFarm() + 0.10 * player.getIndependency() + 0 * player.getSupport() + 0.15 * player.getRotation() + 0.45 * player.getFighting();
-        System.out.println("Mid Role: " + (int) pos2);
-
         pos3 = 0.15 * player.getFarm() + 0.55 * player.getIndependency() + 0 * player.getSupport() + 0.1 * player.getRotation() + 0.20 * player.getFighting();
-        System.out.println("Off Role: " + (int) pos3);
-
         pos4 = 0.05 * player.getFarm() + 0.05 * player.getIndependency() + 0.25 * player.getSupport() + 0.5 * player.getRotation() + 0.15 * player.getFighting();
-        System.out.println("Supp 4 Role: " + (int) pos4);
-
         pos5 = 0 * player.getFarm() + 0.1 * player.getIndependency() + 0.7 * player.getSupport() + 0.1 * player.getRotation() + 0.1 * player.getFighting();
-        System.out.println("Supp 5 Role: " + (int) pos5);
 
     }
 }

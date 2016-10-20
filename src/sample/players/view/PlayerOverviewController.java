@@ -2,11 +2,12 @@ package sample.players.view;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import sample.Main;
 import sample.players.model.Player;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Paulo on 12/10/2016.
@@ -19,53 +20,77 @@ public class PlayerOverviewController {
     private TableColumn<Player, String> nicknameColumn;
 
     @FXML
-    private Label firstNameLabel;
+    private TextField firstNameLabel;
     @FXML
-    private Label lastNameLabel;
+    private TextField lastNameLabel;
     @FXML
-    private Label nicknameLabel;
+    private TextField nicknameLabel;
     @FXML
-    private Label ageLabel;
+    private TextField birthDayLabel;
     @FXML
-    private Label rankLabel;
+    private TextField rankLabel;
     @FXML
-    private Label popularityLabel;
+    private TextField popularityLabel;
     @FXML
-    private Label valueLabel;
+    private TextField valueLabel;
     @FXML
-    private Label salaryLabel;
+    private TextField salaryLabel;
     @FXML
-    private Label farmLabel;
+    private TextField farmLabel;
     @FXML
-    private Label independecyLabel;
+    private TextField independecyLabel;
     @FXML
-    private Label fightingLabel;
+    private TextField fightingLabel;
     @FXML
-    private Label supportLabel;
+    private TextField supportLabel;
     @FXML
-    private Label rotationLabel;
+    private TextField rotationLabel;
     @FXML
-    private Label positioningLabel;
+    private TextField positioningLabel;
     @FXML
-    private Label mapAwarenessLabel;
+    private TextField mapAwarenessLabel;
     @FXML
-    private Label aggressionLabel;
+    private TextField aggressionLabel;
     @FXML
-    private Label reflexLabel;
+    private TextField reflexLabel;
     @FXML
-    private Label decisionMakingLabel;
+    private TextField decisionMakingLabel;
     @FXML
-    private Label potentialLabel;
+    private TextField potentialLabel;
     @FXML
-    private Label happinessLabel;
+    private TextField happinessLabel;
     @FXML
-    private Label intelligenceLabel;
+    private TextField intelligenceLabel;
     @FXML
-    private Label concentrationLabel;
+    private TextField concentrationLabel;
     @FXML
-    private Label leadershipLabel;
+    private TextField leadershipLabel;
     @FXML
-    private Label rageLabel;
+    private TextField rageLabel;
+
+    //Appearence settings
+    @FXML
+    private TextField hairTypeLabel;
+    @FXML
+    private TextField hairColorLabel;
+    @FXML
+    private TextField faceTypeLabel;
+    @FXML
+    private TextField faceColorLabel;
+    @FXML
+    private TextField shirtTypeLabel;
+    @FXML
+    private TextField shirtColorLabel;
+    @FXML
+    private TextField pantsTypeLabel;
+    @FXML
+    private TextField pantsColorLabel;
+    @FXML
+    private Label playerIdLabel;
+    @FXML
+    private Label teamIdLabel;
+
+    //Estimated Values
     @FXML
     private Label carryLabel;
     @FXML
@@ -80,6 +105,8 @@ public class PlayerOverviewController {
     private Label estimatedValueLabel;
     @FXML
     private Label estimatedSalaryLabel;
+    @FXML
+    private Label estimatedAgeLabel;
 
 
 
@@ -95,7 +122,79 @@ public class PlayerOverviewController {
         nicknameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNickName()));
         showPlayerDetails(null);
         playerTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPlayerDetails(newValue));
-        playerTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> getEstimatedStatus(newValue));
+    }
+
+    @FXML
+    private void handleConfirmPlayer() {
+        int selectedIndex = playerTable.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >= 0) {
+            playerTable.getItems().get(selectedIndex).setFirstName(firstNameLabel.getText());
+            playerTable.getItems().get(selectedIndex).setLastName(lastNameLabel.getText());
+            playerTable.getItems().get(selectedIndex).setNickName(nicknameLabel.getText());
+            playerTable.getItems().get(selectedIndex).setBirthDay(birthDayLabel.getText());
+            playerTable.getItems().get(selectedIndex).setRank(Integer.parseInt(rankLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setPopularity(Integer.parseInt(popularityLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setValue(Integer.parseInt(valueLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setSalary(Integer.parseInt(salaryLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setFarm(Integer.parseInt(farmLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setIndependency(Integer.parseInt(independecyLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setFighting(Integer.parseInt(fightingLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setSupport(Integer.parseInt(supportLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setRotation(Integer.parseInt(rotationLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setPositioning(Integer.parseInt(positioningLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setMapAwareness(Integer.parseInt(mapAwarenessLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setAggression(Integer.parseInt(aggressionLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setReflex(Integer.parseInt(reflexLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setDecisionMaking(Integer.parseInt(decisionMakingLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setPotential(Integer.parseInt(potentialLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setHappiness(Integer.parseInt(happinessLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setIntelligence(Integer.parseInt(intelligenceLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setConcentration(Integer.parseInt(concentrationLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setLeadership(Integer.parseInt(leadershipLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setRage(Integer.parseInt(rageLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setHairType(Integer.parseInt(hairTypeLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setHairColor(Integer.parseInt(hairColorLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setFaceType(Integer.parseInt(faceTypeLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setFaceColor(Integer.parseInt(faceColorLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setShirtType(Integer.parseInt(shirtTypeLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setShirtColor(Integer.parseInt(shirtColorLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setPantsType(Integer.parseInt(pantsTypeLabel.getText()));
+            playerTable.getItems().get(selectedIndex).setPantsColor(Integer.parseInt(pantsColorLabel.getText()));
+            playerTable.refresh();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Player Selected");
+            alert.setContentText("Please select a player in the table.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleDeletePlayer() {
+        int selectedIndex = playerTable.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >= 0) {
+            playerTable.getItems().remove(selectedIndex);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Player Selected");
+            alert.setContentText("Please select a player in the table.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleNewPlayer() {
+        Player newPlayer = new Player();
+        newPlayer.setNickName("NEW PLAYER");
+        newPlayer.setId(setNewplayerID());
+        newPlayer.setTeamId("TEAM_000");
+        playerTable.getItems().add(newPlayer);
+        playerTable.getSelectionModel().select(newPlayer);
+
     }
 
     public void setMain(Main main) {
@@ -104,14 +203,13 @@ public class PlayerOverviewController {
         playerTable.setItems(main.getPlayerData());
     }
 
-
     private void showPlayerDetails(Player player) {
         if (player != null) {
 
             firstNameLabel.setText(player.getFirstName());
             lastNameLabel.setText(player.getLastName());
             nicknameLabel.setText(player.getNickName());
-            ageLabel.setText(Integer.toString(player.getAge()));
+            birthDayLabel.setText(player.getBirthDay());
             rankLabel.setText(Integer.toString(player.getRank()));
             popularityLabel.setText(Integer.toString(player.getPopularity()));
             valueLabel.setText(Integer.toString(player.getValue()));
@@ -132,13 +230,23 @@ public class PlayerOverviewController {
             concentrationLabel.setText(Integer.toString(player.getConcentration()));
             leadershipLabel.setText(Integer.toString(player.getLeadership()));
             rageLabel.setText(Integer.toString(player.getRage()));
+            hairTypeLabel.setText(Integer.toString(player.getHairType()));
+            hairColorLabel.setText(Integer.toString(player.getHairColor()));
+            faceTypeLabel.setText(Integer.toString(player.getFaceType()));
+            faceColorLabel.setText(Integer.toString(player.getFaceColor()));
+            shirtTypeLabel.setText(Integer.toString(player.getShirtType()));
+            shirtColorLabel.setText(Integer.toString(player.getShirtColor()));
+            pantsTypeLabel.setText(Integer.toString(player.getPantsType()));
+            pantsColorLabel.setText(Integer.toString(player.getPantsColor()));
+            playerIdLabel.setText(player.getId());
+            teamIdLabel.setText(player.getTeamId());
             getEstimatedStatus(player);
 
         } else {
             firstNameLabel.setText("");
             lastNameLabel.setText("");
             nicknameLabel.setText("");
-            ageLabel.setText("");
+            birthDayLabel.setText("");
             rankLabel.setText("");
             popularityLabel.setText("");
             valueLabel.setText("");
@@ -159,6 +267,15 @@ public class PlayerOverviewController {
             concentrationLabel.setText("");
             leadershipLabel.setText("");
             rageLabel.setText("");
+            hairTypeLabel.setText("");
+            hairColorLabel.setText("");
+            faceTypeLabel.setText("");
+            faceColorLabel.setText("");
+            shirtTypeLabel.setText("");
+            shirtColorLabel.setText("");
+            pantsTypeLabel.setText("");
+            pantsColorLabel.setText("");
+
             carryLabel.setText("");
             midLabel.setText("");
             offlaneLabel.setText("");
@@ -166,6 +283,7 @@ public class PlayerOverviewController {
             support5Label.setText("");
             estimatedValueLabel.setText("");
             estimatedSalaryLabel.setText("");
+            estimatedAgeLabel.setText("");
 
         }
     }
@@ -177,27 +295,14 @@ public class PlayerOverviewController {
         double pos4;
         double pos5;
 
-        System.out.println(player.getNickName());
         pos1 = 0.65 * player.getFarm() + 0.05 * player.getIndependency() + 0 * player.getSupport() + 0.05 * player.getRotation() + 0.25 * player.getFighting();
-        System.out.println("Carry Role: " + (int) pos1);
-
         pos2 = 0.30 * player.getFarm() + 0.1 * player.getIndependency() + 0 * player.getSupport() + 0.15 * player.getRotation() + 0.45 * player.getFighting();
-        System.out.println("Mid Role: " + (int) pos2);
-
         pos3 = 0.15 * player.getFarm() + 0.55 * player.getIndependency() + 0 * player.getSupport() + 0.1 * player.getRotation() + 0.2 * player.getFighting();
-        System.out.println("Off Role: " + (int) pos3);
-
         pos4 = 0.05 * player.getFarm() + 0.05 * player.getIndependency() + 0.25 * player.getSupport() + 0.5 * player.getRotation() + 0.15 * player.getFighting();
-        System.out.println("Supp 4 Role: " + (int) pos4);
-
         pos5 = 0 * player.getFarm() + 0.1 * player.getIndependency() + 0.7 * player.getSupport() + 0.1 * player.getRotation() + 0.1 * player.getFighting();
-        System.out.println("Supp 5 Role: " + (int) pos5);
-
         int roles[] = {(int)pos1, (int)pos2 ,(int)pos3, (int)pos4, (int)pos5};
-
         double value = Math.pow(1.082, bestRole(roles)+player.getPopularity());
         int salary = (int)value/80;
-        System.out.println(salary);
 
         carryLabel.setText(Integer.toString((int)pos1));
         midLabel.setText(Integer.toString((int)pos2));
@@ -206,6 +311,8 @@ public class PlayerOverviewController {
         support5Label.setText(Integer.toString((int)pos5));
         estimatedValueLabel.setText(Integer.toString((int)value));
         estimatedSalaryLabel.setText(Integer.toString(salary));
+        estimatedAgeLabel.setText(Integer.toString(player.getAge()));
+
     }
 
     public int bestRole(int roles[]) {
@@ -217,9 +324,35 @@ public class PlayerOverviewController {
                     roles[j+1] = buffer;
                 }
             }
-
         }
         return roles[4];
+    }
+
+    public long calculateplayerID() {
+        long playerId;
+        long newId = 0;
+        for (int i = 0; i < playerTable.getItems().size(); i++) {
+            for (int j = 0; j < playerTable.getItems().size(); j++) {
+                playerId = Integer.parseInt(playerTable.getItems().get(j).getId().split("_")[1]);
+                if (newId == playerId)
+                    newId++;
+
+            }
+           // System.out.println(newId);
+        }
+        return newId;
+    }
+
+    public String setNewplayerID() {
+        String newPlayerId;
+        String calculateID = Long.toString(calculateplayerID());
+        String zeros = "";
+        for( int i = 0; i < 6 - calculateID.length(); i++) {
+            zeros = zeros + "0";
+        }
+        newPlayerId = "PLAYER_" + zeros + calculateID;
+
+        return newPlayerId;
     }
 }
 

@@ -1,5 +1,8 @@
 package sample.players.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by Paulo on 10/10/2016.
  */
@@ -9,7 +12,7 @@ public class Player {
     private String firstName;
     private String lastName;
     private String nickName;
-    private int age;
+    private String birthDay;
     private int rank; //similar to ELO/MMR
     /*  Team information  */
     private int value;
@@ -45,14 +48,18 @@ public class Player {
     private int pantsColor;
 
     public Player() {
+        this.firstName = "";
+        this.lastName = "";
+        this.nickName = "";
+        this.birthDay = "0/0/0";
     }
 
 
-    public Player(String firstName, String lastName, String nickName, int age, int rank, int value, int salary, int popularity, int farm, int independency, int fighting, int support, int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking, int potential, int happiness, int intelligence, int concentration, int leadership, int rage) {
+    public Player(String firstName, String lastName, String nickName, String birthDay, int rank, int value, int salary, int popularity, int farm, int independency, int fighting, int support, int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking, int potential, int happiness, int intelligence, int concentration, int leadership, int rage, String ID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
-        this.age = age;
+        this.birthDay = birthDay;
         this.rank = rank;
         this.value = value;
         this.salary = salary;
@@ -73,6 +80,7 @@ public class Player {
         this.concentration = concentration;
         this.leadership = leadership;
         this.rage = rage;
+        this.id = ID;
     }
 
 
@@ -108,12 +116,12 @@ public class Player {
         this.nickName = nickName;
     }
 
-    public int getAge() {
-        return age;
+    public String getBirthDay() {
+        return birthDay;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
     }
 
     public int getRank() {
@@ -346,5 +354,26 @@ public class Player {
 
     public void setPantsColor(int pantsColor) {
         this.pantsColor = pantsColor;
+    }
+
+    public int getAge() {
+        int day;
+        int month;
+        int year;
+        int age;
+        String[] parts = birthDay.split("/");
+
+        day = Integer.parseInt(parts[0]);
+        month = Integer.parseInt(parts[1]);
+        year = Integer.parseInt(parts[2]);
+
+        Calendar cal = Calendar.getInstance();
+        age = cal.get(Calendar.YEAR) - year;
+        if( cal.get(Calendar.DAY_OF_MONTH) - day < 0)
+            month++;
+        if( cal.get(Calendar.MONTH)+1 - month < 0)
+            age--;
+
+        return age;
     }
 }
