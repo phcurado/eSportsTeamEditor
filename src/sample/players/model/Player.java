@@ -15,8 +15,6 @@ public class Player {
     private String birthDay;
     private int rank; //similar to ELO/MMR
     /*  Team information  */
-    private int value;
-    private int salary;
     private int popularity;
     private String teamId;
     /*  Technique   */
@@ -55,14 +53,12 @@ public class Player {
     }
 
 
-    public Player(String firstName, String lastName, String nickName, String birthDay, int rank, int value, int salary, int popularity, int farm, int independency, int fighting, int support, int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking, int potential, int happiness, int intelligence, int concentration, int leadership, int rage, String ID) {
+    public Player(String firstName, String lastName, String nickName, String birthDay, int rank, int popularity, int farm, int independency, int fighting, int support, int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking, int potential, int happiness, int intelligence, int concentration, int leadership, int rage, String ID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
         this.birthDay = birthDay;
         this.rank = rank;
-        this.value = value;
-        this.salary = salary;
         this.popularity = popularity;
         this.farm = farm;
         this.independency = independency;
@@ -130,22 +126,6 @@ public class Player {
 
     public void setRank(int rank) {
         this.rank = rank;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
     }
 
     public int getPopularity() {

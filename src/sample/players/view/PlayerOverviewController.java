@@ -1,13 +1,15 @@
 package sample.players.view;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.Main;
 import sample.players.model.Player;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.io.FileWriter;
+import java.io.Writer;
 
 /**
  * Created by Paulo on 12/10/2016.
@@ -18,7 +20,6 @@ public class PlayerOverviewController {
     private TableView<Player> playerTable;
     @FXML
     private TableColumn<Player, String> nicknameColumn;
-
     @FXML
     private TextField firstNameLabel;
     @FXML
@@ -31,10 +32,6 @@ public class PlayerOverviewController {
     private TextField rankLabel;
     @FXML
     private TextField popularityLabel;
-    @FXML
-    private TextField valueLabel;
-    @FXML
-    private TextField salaryLabel;
     @FXML
     private TextField farmLabel;
     @FXML
@@ -109,8 +106,6 @@ public class PlayerOverviewController {
     private Label estimatedAgeLabel;
 
 
-
-
     // Reference to the main application.
     private Main main;
 
@@ -128,39 +123,41 @@ public class PlayerOverviewController {
     private void handleConfirmPlayer() {
         int selectedIndex = playerTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0) {
-            playerTable.getItems().get(selectedIndex).setFirstName(firstNameLabel.getText());
-            playerTable.getItems().get(selectedIndex).setLastName(lastNameLabel.getText());
-            playerTable.getItems().get(selectedIndex).setNickName(nicknameLabel.getText());
-            playerTable.getItems().get(selectedIndex).setBirthDay(birthDayLabel.getText());
-            playerTable.getItems().get(selectedIndex).setRank(Integer.parseInt(rankLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setPopularity(Integer.parseInt(popularityLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setValue(Integer.parseInt(valueLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setSalary(Integer.parseInt(salaryLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setFarm(Integer.parseInt(farmLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setIndependency(Integer.parseInt(independecyLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setFighting(Integer.parseInt(fightingLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setSupport(Integer.parseInt(supportLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setRotation(Integer.parseInt(rotationLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setPositioning(Integer.parseInt(positioningLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setMapAwareness(Integer.parseInt(mapAwarenessLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setAggression(Integer.parseInt(aggressionLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setReflex(Integer.parseInt(reflexLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setDecisionMaking(Integer.parseInt(decisionMakingLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setPotential(Integer.parseInt(potentialLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setHappiness(Integer.parseInt(happinessLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setIntelligence(Integer.parseInt(intelligenceLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setConcentration(Integer.parseInt(concentrationLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setLeadership(Integer.parseInt(leadershipLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setRage(Integer.parseInt(rageLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setHairType(Integer.parseInt(hairTypeLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setHairColor(Integer.parseInt(hairColorLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setFaceType(Integer.parseInt(faceTypeLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setFaceColor(Integer.parseInt(faceColorLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setShirtType(Integer.parseInt(shirtTypeLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setShirtColor(Integer.parseInt(shirtColorLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setPantsType(Integer.parseInt(pantsTypeLabel.getText()));
-            playerTable.getItems().get(selectedIndex).setPantsColor(Integer.parseInt(pantsColorLabel.getText()));
-            playerTable.refresh();
+            if(isInputValid(selectedIndex)) {
+                playerTable.getItems().get(selectedIndex).setFirstName(firstNameLabel.getText());
+                playerTable.getItems().get(selectedIndex).setLastName(lastNameLabel.getText());
+                playerTable.getItems().get(selectedIndex).setNickName(nicknameLabel.getText());
+                playerTable.getItems().get(selectedIndex).setBirthDay(birthDayLabel.getText());
+                playerTable.getItems().get(selectedIndex).setRank(Integer.parseInt(rankLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setPopularity(Integer.parseInt(popularityLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setFarm(Integer.parseInt(farmLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setIndependency(Integer.parseInt(independecyLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setFighting(Integer.parseInt(fightingLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setSupport(Integer.parseInt(supportLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setRotation(Integer.parseInt(rotationLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setPositioning(Integer.parseInt(positioningLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setMapAwareness(Integer.parseInt(mapAwarenessLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setAggression(Integer.parseInt(aggressionLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setReflex(Integer.parseInt(reflexLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setDecisionMaking(Integer.parseInt(decisionMakingLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setPotential(Integer.parseInt(potentialLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setHappiness(Integer.parseInt(happinessLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setIntelligence(Integer.parseInt(intelligenceLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setConcentration(Integer.parseInt(concentrationLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setLeadership(Integer.parseInt(leadershipLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setRage(Integer.parseInt(rageLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setHairType(Integer.parseInt(hairTypeLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setHairColor(Integer.parseInt(hairColorLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setFaceType(Integer.parseInt(faceTypeLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setFaceColor(Integer.parseInt(faceColorLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setShirtType(Integer.parseInt(shirtTypeLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setShirtColor(Integer.parseInt(shirtColorLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setPantsType(Integer.parseInt(pantsTypeLabel.getText()));
+                playerTable.getItems().get(selectedIndex).setPantsColor(Integer.parseInt(pantsColorLabel.getText()));
+                getEstimatedStatus(playerTable.getItems().get(selectedIndex));
+                playerTable.refresh();
+
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
@@ -188,14 +185,40 @@ public class PlayerOverviewController {
 
     @FXML
     private void handleNewPlayer() {
-        Player newPlayer = new Player();
-        newPlayer.setNickName("NEW PLAYER");
-        newPlayer.setId(setNewplayerID());
-        newPlayer.setTeamId("TEAM_000");
-        playerTable.getItems().add(newPlayer);
-        playerTable.getSelectionModel().select(newPlayer);
+        if(uniqueName("NEW PLAYER")) {
+            Player newPlayer = new Player();
+            newPlayer.setNickName("NEW PLAYER");
+            newPlayer.setId(setNewplayerID());
+            newPlayer.setTeamId("TEAM_0000");
+            playerTable.getItems().add(newPlayer);
+            playerTable.getSelectionModel().select(newPlayer);
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("New Player");
+            alert.setHeaderText("Already Created a new Player");
+            alert.setContentText("Please edit and confirm the NickName of your new Player before creating another, must be unique and different of the default NEW PLAYER nickname");
+            alert.showAndWait();
+        }
+
+
 
     }
+/*
+    @FXML
+    void handleSavePlayers() {
+        try (Writer writer = new FileWriter("Players.json");){
+            Gson gson = new GsonBuilder().create();
+            gson.toJson(playerTable.getItems(), writer);
+            String outpt = gson.toJson(playerTable.getItems());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    */
 
     public void setMain(Main main) {
         this.main = main;
@@ -212,8 +235,6 @@ public class PlayerOverviewController {
             birthDayLabel.setText(player.getBirthDay());
             rankLabel.setText(Integer.toString(player.getRank()));
             popularityLabel.setText(Integer.toString(player.getPopularity()));
-            valueLabel.setText(Integer.toString(player.getValue()));
-            salaryLabel.setText(Integer.toString(player.getSalary()));
             farmLabel.setText(Integer.toString(player.getFarm()));
             independecyLabel.setText(Integer.toString(player.getIndependency()));
             fightingLabel.setText(Integer.toString(player.getFighting()));
@@ -249,8 +270,6 @@ public class PlayerOverviewController {
             birthDayLabel.setText("");
             rankLabel.setText("");
             popularityLabel.setText("");
-            valueLabel.setText("");
-            salaryLabel.setText("");
             farmLabel.setText("");
             independecyLabel.setText("");
             fightingLabel.setText("");
@@ -296,13 +315,14 @@ public class PlayerOverviewController {
         double pos5;
 
         pos1 = 0.65 * player.getFarm() + 0.05 * player.getIndependency() + 0 * player.getSupport() + 0.05 * player.getRotation() + 0.25 * player.getFighting();
-        pos2 = 0.30 * player.getFarm() + 0.1 * player.getIndependency() + 0 * player.getSupport() + 0.15 * player.getRotation() + 0.45 * player.getFighting();
+        pos2 = 0.25 * player.getFarm() + 0.1 * player.getIndependency() + 0 * player.getSupport() + 0.10 * player.getRotation() + 0.55 * player.getFighting();
         pos3 = 0.15 * player.getFarm() + 0.55 * player.getIndependency() + 0 * player.getSupport() + 0.1 * player.getRotation() + 0.2 * player.getFighting();
         pos4 = 0.05 * player.getFarm() + 0.05 * player.getIndependency() + 0.25 * player.getSupport() + 0.5 * player.getRotation() + 0.15 * player.getFighting();
         pos5 = 0 * player.getFarm() + 0.1 * player.getIndependency() + 0.7 * player.getSupport() + 0.1 * player.getRotation() + 0.1 * player.getFighting();
         int roles[] = {(int)pos1, (int)pos2 ,(int)pos3, (int)pos4, (int)pos5};
-        double value = Math.pow(1.082, bestRole(roles)+player.getPopularity());
-        int salary = (int)value/80;
+        double value = Math.pow(Math.pow(1.12, bestRole(roles)) + Math.pow(1.09, player.getPopularity()), 1.25)*14/(Math.pow(1.035,200-bestRole(roles)-player.getPopularity()));
+       // double value = Math.pow(Math.pow(1.145, bestRole(roles)) + Math.pow(1.03, player.getPopularity()), 1.25)*14/(Math.pow(1.035,200-bestRole(roles)-player.getPopularity()));
+        double salary = Math.pow(Math.pow(1.09, bestRole(roles)) + Math.pow(1.075, player.getPopularity()), 1.22)*3/(Math.pow(1.035,200-1.1*bestRole(roles)-0.9*player.getPopularity()));
 
         carryLabel.setText(Integer.toString((int)pos1));
         midLabel.setText(Integer.toString((int)pos2));
@@ -310,7 +330,7 @@ public class PlayerOverviewController {
         support4Label.setText(Integer.toString((int)pos4));
         support5Label.setText(Integer.toString((int)pos5));
         estimatedValueLabel.setText(Integer.toString((int)value));
-        estimatedSalaryLabel.setText(Integer.toString(salary));
+        estimatedSalaryLabel.setText(Integer.toString((int)salary));
         estimatedAgeLabel.setText(Integer.toString(player.getAge()));
 
     }
@@ -338,7 +358,6 @@ public class PlayerOverviewController {
                     newId++;
 
             }
-           // System.out.println(newId);
         }
         return newId;
     }
@@ -353,6 +372,58 @@ public class PlayerOverviewController {
         newPlayerId = "PLAYER_" + zeros + calculateID;
 
         return newPlayerId;
+    }
+
+    public boolean uniqueNameInTable(String name, int selectedIndex) {
+        String playerName;
+        for (int i = 0; i < playerTable.getItems().size(); i++) {
+            playerName = playerTable.getItems().get(i).getNickName();
+            if (name.equals(playerName))
+                if(playerTable.getItems().get(selectedIndex).getNickName().equals(name))
+                    return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    public boolean uniqueName(String name) {
+        String playerName;
+        for (int i = 0; i < playerTable.getItems().size(); i++) {
+            playerName = playerTable.getItems().get(i).getNickName();
+            if (name.equals(playerName))
+                    return false;
+        }
+        return true;
+    }
+
+    public boolean isInputValid(int selectedIndex) {
+        String errorMessage = "";
+        if (firstNameLabel.getText() == null || firstNameLabel.getLength() == 0)
+            errorMessage += "No valid first name\n";
+        if (!uniqueNameInTable(nicknameLabel.getText(), selectedIndex))
+            errorMessage += "Nickname already exist\n";
+        if (nicknameLabel.getText().equals("NEW PLAYER"))
+            errorMessage += "Don't use the default nickname\n";
+
+        if (errorMessage.length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("Success");
+            alert.setHeaderText("Player Confirmed");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+            return false;
+        }
+
     }
 }
 

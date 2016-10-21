@@ -1,40 +1,49 @@
 package sample;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import sample.players.model.Player;
 import sample.players.view.PlayerOverviewController;
+import sample.view.RootLayoutController;
 
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 
 public class Main extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    private ObservableList<Player> playerData = FXCollections.observableArrayList();
+    public ObservableList<Player> playerData = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Esports Manager Editor");
+        this.primaryStage.getIcons().add(new Image("file:resources/images/icon.png"));
 
+        getPlayersSaved();
         initRootLayout();
-
         showAplicacaoOverview();
 
 
-
-        playerData.add(new Player("Arthour", "Babaev", "Arteezy", "01/07/1996", 9018, 500000, 8000, 88, 88, 65, 82, 40, 87, 82, 80, 85, 90, 78, 88, 50, 82, 80, 78, 78, "PLAYER_000001"));
-              playerData.add(new Player("Amer", "Al", "Miracle", "20/06/1997", 8965, 500000, 8000, 90, 86, 67, 84, 50, 90, 88, 87, 88, 84, 82, 94, 50, 85, 82, 75, 75, "PLAYER_000002"));
-        playerData.add(new Player("Saahil", "Arora", "Universe", "11/10/1989", 8297, 500000, 8000, 87, 70, 90, 80, 55, 86, 86, 87, 88, 80, 85, 87, 50, 83, 88, 78, 60, "PLAYER_000003"));
-            playerData.add(new Player("Paulo", "Curado", "Sabs", "05/10/1990", 3800, 500000, 8000, 60, 65, 67, 68, 72, 70, 60, 65, 62, 65, 62, 70, 50, 80, 70, 70, 80, "PLAYER_000004"));
+/*
+        playerData.add(new Player("Arthour", "Babaev", "Arteezy", "01/07/1996", 9018, 88, 88, 65, 82, 40, 87, 82, 80, 85, 90, 78, 88, 50, 82, 80, 78, 78, "PLAYER_000001"));
+              playerData.add(new Player("Amer", "Al", "Miracle", "20/06/1997", 8965, 90, 86, 67, 84, 50, 90, 88, 87, 88, 84, 82, 94, 50, 85, 82, 75, 75, "PLAYER_000002"));
+        playerData.add(new Player("Saahil", "Arora", "Universe", "11/10/1989", 8297, 87, 70, 90, 80, 55, 86, 86, 87, 88, 80, 85, 87, 50, 83, 88, 78, 60, "PLAYER_000003"));
+            playerData.add(new Player("Paulo", "Curado", "Sabs", "05/10/1990", 3800, 60, 65, 67, 68, 72, 70, 60, 65, 62, 65, 62, 70, 50, 80, 70, 70, 80, "PLAYER_000004"));
+            playerData.add(new Player("Paulo", "Dendi", "Dendi", "05/10/1990", 3800, 95, 77, 70, 80, 50, 77, 60, 65, 62, 65, 62, 70, 50, 80, 70, 70, 80, "PLAYER_000005"));*/
+        ///System.out.println(getPlayerData().get(0).getNickName());
         //playerData.add(new Player("sumail", 80, 75, 30, 86, 87));
 
     }
@@ -47,11 +56,13 @@ public class Main extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
             Scene scene = new Scene(rootLayout);
             // Show the scene containing the root layout.
             primaryStage.setScene(scene);
+            RootLayoutController controller = loader.getController();
+            controller.setMain(this);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,18 +94,16 @@ public class Main extends Application {
         launch(args);
     }
 
-    public void getPosition(Player player) {
-        double pos1;
-        double pos2;
-        double pos3;
-        double pos4;
-        double pos5;
-
-        pos1 = 0.65 * player.getFarm() + 0.05 * player.getIndependency() + 0 * player.getSupport() + 0.05 * player.getRotation() + 0.25 * player.getFighting();
-        pos2 = 0.30 * player.getFarm() + 0.10 * player.getIndependency() + 0 * player.getSupport() + 0.15 * player.getRotation() + 0.45 * player.getFighting();
-        pos3 = 0.15 * player.getFarm() + 0.55 * player.getIndependency() + 0 * player.getSupport() + 0.1 * player.getRotation() + 0.20 * player.getFighting();
-        pos4 = 0.05 * player.getFarm() + 0.05 * player.getIndependency() + 0.25 * player.getSupport() + 0.5 * player.getRotation() + 0.15 * player.getFighting();
-        pos5 = 0 * player.getFarm() + 0.1 * player.getIndependency() + 0.7 * player.getSupport() + 0.1 * player.getRotation() + 0.1 * player.getFighting();
-
+    public void getPlayersSaved() {
+        try (Reader reader = new FileReader("Players.json");){
+            Gson gson = new GsonBuilder().create();
+            playerData.addAll(gson.fromJson(reader, Player[].class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
 }
