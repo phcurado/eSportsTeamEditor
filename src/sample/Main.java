@@ -11,7 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import sample.players.model.Contract;
 import sample.players.model.Player;
+import sample.players.model.Team;
 import sample.players.view.PlayerOverviewController;
 import sample.view.RootLayoutController;
 
@@ -25,6 +27,8 @@ public class Main extends Application {
     private BorderPane rootLayout;
 
     public ObservableList<Player> playerData = FXCollections.observableArrayList();
+    public ObservableList<Team> teamData = FXCollections.observableArrayList();
+    public ObservableList<Contract> contractData = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -35,6 +39,8 @@ public class Main extends Application {
         getPlayersSaved();
         initRootLayout();
         showAplicacaoOverview();
+
+       // teamData.add(new Team("Evil Geniuses", "EG", 5000000, 1));
 
 
 /*
@@ -51,6 +57,8 @@ public class Main extends Application {
     public ObservableList<Player> getPlayerData() {
         return playerData;
     }
+    public ObservableList<Team> getTeamData() { return teamData; }
+    public ObservableList<Contract> getContractData() { return  contractData; }
 
     public void initRootLayout() {
         try {
@@ -98,6 +106,21 @@ public class Main extends Application {
         try (Reader reader = new FileReader("Players.json");){
             Gson gson = new GsonBuilder().create();
             playerData.addAll(gson.fromJson(reader, Player[].class));
+
+            try (Reader readerTeam = new FileReader("Teams.json");){
+                Gson gsonTeam = new GsonBuilder().create();
+                teamData.addAll(gsonTeam.fromJson(readerTeam, Team[].class));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try (Reader readerContract = new FileReader("Contracts.json");){
+                Gson gsonContract = new GsonBuilder().create();
+                contractData.addAll(gsonContract.fromJson(readerContract, Contract[].class));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

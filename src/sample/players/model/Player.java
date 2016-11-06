@@ -12,7 +12,7 @@ public class Player {
     private String firstName;
     private String lastName;
     private String nickName;
-    private String birthDay;
+    private Calendar birthDay;
     private int rank; //similar to ELO/MMR
     /*  Team information  */
     private int popularity;
@@ -40,26 +40,30 @@ public class Player {
     private int hairColor;
     private int faceType;
     private int faceColor;
-    private int shirtType;
-    private int shirtColor;
-    private int pantsType;
-    private int pantsColor;
+    private int expressionType;
+    private int accessory;
 
     public Player() {
         this.firstName = "";
         this.lastName = "";
         this.nickName = "";
-        this.birthDay = "0/0/0";
+        this.birthDay = Calendar.getInstance();
     }
 
+    public Player(String id, String firstName, String lastName, String nickName, Calendar birthDay,
+                  int rank, int popularity, String teamId, int farm, int independency, int fighting, int support,
+                  int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking,
+                  int potential, int happiness, int intelligence, int concentration, int leadership, int rage, int hairType,
+                  int hairColor, int faceType, int faceColor, int expressionType, int accessory) {
 
-    public Player(String firstName, String lastName, String nickName, String birthDay, int rank, int popularity, int farm, int independency, int fighting, int support, int rotation, int positioning, int mapAwareness, int aggression, int reflex, int decisionMaking, int potential, int happiness, int intelligence, int concentration, int leadership, int rage, String ID) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
         this.birthDay = birthDay;
         this.rank = rank;
         this.popularity = popularity;
+        this.teamId = teamId;
         this.farm = farm;
         this.independency = independency;
         this.fighting = fighting;
@@ -76,9 +80,34 @@ public class Player {
         this.concentration = concentration;
         this.leadership = leadership;
         this.rage = rage;
-        this.id = ID;
+        this.hairType = hairType;
+        this.hairColor = hairColor;
+        this.faceType = faceType;
+        this.faceColor = faceColor;
+        this.expressionType = expressionType;
+        this.accessory = accessory;
     }
 
+
+    public int getAge() {
+        int day;
+        int month;
+        int year;
+        int age;
+
+        day = birthDay.get(Calendar.DAY_OF_MONTH);
+        month = birthDay.get(Calendar.MONTH)+1;
+        year = birthDay.get(Calendar.YEAR);
+
+        Calendar cal = Calendar.getInstance();
+        age = cal.get(Calendar.YEAR) - year;
+        if( cal.get(Calendar.DAY_OF_MONTH) - day < 0)
+            month++;
+        if( cal.get(Calendar.MONTH)+1 - month < 0)
+            age--;
+
+        return age;
+    }
 
     public String getId() {
         return id;
@@ -112,11 +141,11 @@ public class Player {
         this.nickName = nickName;
     }
 
-    public String getBirthDay() {
+    public Calendar getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(String birthDay) {
+    public void setBirthDay(Calendar birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -304,56 +333,19 @@ public class Player {
         this.faceColor = faceColor;
     }
 
-    public int getShirtType() {
-        return shirtType;
+    public int getExpressionType() {
+        return expressionType;
     }
 
-    public void setShirtType(int shirtType) {
-        this.shirtType = shirtType;
+    public void setExpressionType(int expressionType) {
+        this.expressionType = expressionType;
     }
 
-    public int getShirtColor() {
-        return shirtColor;
+    public int getAccessory() {
+        return accessory;
     }
 
-    public void setShirtColor(int shirtColor) {
-        this.shirtColor = shirtColor;
-    }
-
-    public int getPantsType() {
-        return pantsType;
-    }
-
-    public void setPantsType(int pantsType) {
-        this.pantsType = pantsType;
-    }
-
-    public int getPantsColor() {
-        return pantsColor;
-    }
-
-    public void setPantsColor(int pantsColor) {
-        this.pantsColor = pantsColor;
-    }
-
-    public int getAge() {
-        int day;
-        int month;
-        int year;
-        int age;
-        String[] parts = birthDay.split("/");
-
-        day = Integer.parseInt(parts[0]);
-        month = Integer.parseInt(parts[1]);
-        year = Integer.parseInt(parts[2]);
-
-        Calendar cal = Calendar.getInstance();
-        age = cal.get(Calendar.YEAR) - year;
-        if( cal.get(Calendar.DAY_OF_MONTH) - day < 0)
-            month++;
-        if( cal.get(Calendar.MONTH)+1 - month < 0)
-            age--;
-
-        return age;
+    public void setAccessory(int accessory) {
+        this.accessory = accessory;
     }
 }
