@@ -13,7 +13,7 @@ public class Team {
     private int tier;
 
     public Team() {
-        playersId = new String[6];
+        playersId = new String[5];
     }
 
     public Team(String name, String abbreviatedName, long budget, int tier) {
@@ -21,7 +21,7 @@ public class Team {
         this.abbreviatedName = abbreviatedName;
         this.budget = budget;
         this.tier = tier;
-        playersId = new String[6];
+        playersId = new String[5];
     }
 
     public String getId() {

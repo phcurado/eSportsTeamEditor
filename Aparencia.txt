@@ -1,0 +1,36 @@
+Cabelos:
+1 careca
+2 curto
+3 médio
+4 longo
+
+Rosto:
+1 normal europeu
+2 normal asiatico
+3 magro europeu
+4 magro asiático
+5 gordo europeu
+6 gordo asiatico
+
+Camisa
+1 Regata
+2 Normal
+3 Longa
+
+Bottn
+1 Short
+2 Calça
+
+
+Cores:
+1 Moreno escuro (cor pele)
+2 Moreno claro (cor pele)
+3 Branco (cor pele)
+4 Amarelo (cor pele)
+5 Branco (Cabelo e roupa)
+6 Amarelo (Cabelo e roupa)
+7 Preto (Cabelo e roupa)
+8 Marrom (Cabelo e roupa)
+9 Azul (Cabelo e roupa)
+10 Cinza (roupa cabelo)
+11 Roxo (roupa cabelo)

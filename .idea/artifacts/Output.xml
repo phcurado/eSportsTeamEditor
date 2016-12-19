@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Output">
+    <output-path>$PROJECT_DIR$/out/artifacts/Output</output-path>
+    <root id="archive" name="Output.jar">
+      <element id="module-output" name="Esports Manager Editor" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/Output/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
