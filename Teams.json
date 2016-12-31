@@ -21,11 +21,11 @@
     "playersId": [
       "PLAYER_000007",
       "PLAYER_000008",
-      "PLAYER_000009",
-      "PLAYER_000010",
-      "PLAYER_000011"
+      "PLAYER_000045",
+      "PLAYER_000011",
+      "PLAYER_000010"
     ],
-    "tier": 1
+    "tier": 2
   },
   {
     "id": "TEAM_0003",
@@ -54,5 +54,159 @@
       "PLAYER_000021"
     ],
     "tier": 1
+  },
+  {
+    "id": "TEAM_0005",
+    "name": "(monkey) Business",
+    "abbreviatedName": "MB",
+    "budget": 1000000,
+    "playersId": [
+      "PLAYER_000030",
+      "PLAYER_000028",
+      "PLAYER_000029",
+      "PLAYER_000027",
+      "PLAYER_000026"
+    ],
+    "tier": 1
+  },
+  {
+    "id": "TEAM_0006",
+    "name": "Ad Feed",
+    "abbreviatedName": "AF",
+    "budget": 150000,
+    "playersId": [
+      "PLAYER_000031",
+      "PLAYER_000032",
+      "PLAYER_000033",
+      "PLAYER_000034",
+      "PLAYER_000035"
+    ],
+    "tier": 3
+  },
+  {
+    "id": "TEAM_0007",
+    "name": "Team Cloud",
+    "abbreviatedName": "TC",
+    "budget": 180000,
+    "playersId": [
+      "PLAYER_000037",
+      "PLAYER_000036",
+      "PLAYER_000038",
+      "PLAYER_000039",
+      "PLAYER_000040"
+    ],
+    "tier": 3
+  },
+  {
+    "id": "TEAM_0008",
+    "name": "Natus Perdere",
+    "abbreviatedName": "Napi",
+    "budget": 1000000,
+    "playersId": [
+      "PLAYER_000042",
+      "PLAYER_000022",
+      "PLAYER_000041",
+      "PLAYER_000043",
+      "PLAYER_000044"
+    ],
+    "tier": 4
+  },
+  {
+    "id": "TEAM_0009",
+    "name": "MVP",
+    "abbreviatedName": "MVP",
+    "budget": 300000,
+    "playersId": [
+      "PLAYER_000009",
+      "PLAYER_000047",
+      "PLAYER_000048",
+      "PLAYER_000049",
+      "PLAYER_000046"
+    ],
+    "tier": 2
+  },
+  {
+    "id": "TEAM_0010",
+    "name": "Virtus Polar",
+    "abbreviatedName": "VP",
+    "budget": 1000000,
+    "playersId": [
+      "PLAYER_000051",
+      "PLAYER_000052",
+      "PLAYER_000053",
+      "PLAYER_000054",
+      "PLAYER_000055"
+    ],
+    "tier": 1
+  },
+  {
+    "id": "TEAM_0011",
+    "name": "Newbie",
+    "abbreviatedName": "Newbie",
+    "budget": 600000,
+    "playersId": [
+      "PLAYER_000056",
+      "PLAYER_000057",
+      "PLAYER_000058",
+      "PLAYER_000059",
+      "PLAYER_000060"
+    ],
+    "tier": 2
+  },
+  {
+    "id": "TEAM_0012",
+    "name": "Team Face",
+    "abbreviatedName": "Face",
+    "budget": 500000,
+    "playersId": [
+      "PLAYER_000061",
+      "PLAYER_000062",
+      "PLAYER_000063",
+      "PLAYER_000064",
+      "PLAYER_000065"
+    ],
+    "tier": 2
+  },
+  {
+    "id": "TEAM_0013",
+    "name": "Team Liquid",
+    "abbreviatedName": "Liquid",
+    "budget": 900000,
+    "playersId": [
+      "PLAYER_000066",
+      "PLAYER_000067",
+      "PLAYER_000068",
+      "PLAYER_000069",
+      "PLAYER_000070"
+    ],
+    "tier": 2
+  },
+  {
+    "id": "TEAM_0014",
+    "name": "LGY",
+    "abbreviatedName": "LGY",
+    "budget": 400000,
+    "playersId": [
+      "PLAYER_000071",
+      "PLAYER_000072",
+      "PLAYER_000073",
+      "PLAYER_000074",
+      "PLAYER_000075"
+    ],
+    "tier": 3
+  },
+  {
+    "id": "TEAM_0015",
+    "name": "The Allies",
+    "abbreviatedName": "Allies",
+    "budget": 270000,
+    "playersId": [
+      "PLAYER_000076",
+      "PLAYER_000077",
+      "PLAYER_000078",
+      "PLAYER_000079",
+      "PLAYER_000080"
+    ],
+    "tier": 3
   }
 ]
