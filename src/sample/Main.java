@@ -39,7 +39,7 @@ public class Main extends Application {
         getPlayersSaved();
         initRootLayout();
         showAplicacaoOverview();
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
 
 
        // teamData.add(new Team("Evil Geniuses", "EG", 5000000, 1));

@@ -689,15 +689,15 @@ public class PlayerOverviewController {
         double pos4;
         double pos5;
 
-        pos1 = 0.65 * player.getFarm() + 0.05 * player.getIndependency() + 0 * player.getSupport() + 0.05 * player.getRotation() + 0.25 * player.getFighting();
-        pos2 = 0.15 * player.getFarm() + 0.1 * player.getIndependency() + 0 * player.getSupport() + 0.10 * player.getRotation() + 0.65 * player.getFighting();
-        pos3 = 0.1 * player.getFarm() + 0.60 * player.getIndependency() + 0 * player.getSupport() + 0.15 * player.getRotation() + 0.15 * player.getFighting();
-        pos4 = 0 * player.getFarm() + 0.05 * player.getIndependency() + 0.4 * player.getSupport() + 0.5 * player.getRotation() + 0.05 * player.getFighting();
-        pos5 = 0 * player.getFarm() + 0.05 * player.getIndependency() + 0.75 * player.getSupport() + 0.1 * player.getRotation() + 0.1 * player.getFighting();
+        pos1 = 0.85 * player.getFarm() + 0 * player.getIndependency() + 0 * player.getSupport() + 0 * player.getRotation() + 0.15 * player.getFighting();
+        pos2 = 0.20 * player.getFarm() + 0 * player.getIndependency() + 0 * player.getSupport() + 0 * player.getRotation() + 0.80 * player.getFighting();
+        pos3 = 0.15 * player.getFarm() + 0.7 * player.getIndependency() + 0 * player.getSupport() + 0 * player.getRotation() + 0.15 * player.getFighting();
+        pos4 = 0 * player.getFarm() + 0 * player.getIndependency() + 0.4 * player.getSupport() + 0.6 * player.getRotation() + 0 * player.getFighting();
+        pos5 = 0 * player.getFarm() + 0 * player.getIndependency() + 0.85 * player.getSupport() + 0.15 * player.getRotation() + 0 * player.getFighting();
         int roles[] = {(int)pos1, (int)pos2 ,(int)pos3, (int)pos4, (int)pos5};
-        double value = Math.pow(Math.pow(1.12, bestRole(roles)) + Math.pow(1.09, player.getPopularity()), 1.25)*14/(Math.pow(1.035,200-bestRole(roles)-player.getPopularity()));
+        double value = Math.pow(Math.pow(1.110, bestRole(roles)) + Math.pow(1.09, player.getPopularity()), 1.25)*14/(Math.pow(1.035,200-bestRole(roles)-player.getPopularity()));
        // double value = Math.pow(Math.pow(1.145, bestRole(roles)) + Math.pow(1.03, player.getPopularity()), 1.25)*14/(Math.pow(1.035,200-bestRole(roles)-player.getPopularity()));
-        double salary = Math.pow(Math.pow(1.09, bestRole(roles)) + Math.pow(1.075, player.getPopularity()), 1.22)*3/(Math.pow(1.035,200-1.1*bestRole(roles)-0.9*player.getPopularity()));
+        double salary = Math.pow(Math.pow(1.08, bestRole(roles))*2.7 + Math.pow(1.075, player.getPopularity()), 1.22);
 
         carryLabel.setText(Integer.toString((int)pos1));
         midLabel.setText(Integer.toString((int)pos2));

@@ -1,7 +1,7 @@
 [
   {
     "id": "TEAM_0001",
-    "name": "Evil Geniuses",
+    "name": "Geniuses",
     "abbreviatedName": "EG",
     "budget": 2000000,
     "playersId": [
@@ -15,7 +15,7 @@
   },
   {
     "id": "TEAM_0002",
-    "name": "Team Secret",
+    "name": "Secret",
     "abbreviatedName": "Secret",
     "budget": 1000000,
     "playersId": [
@@ -25,11 +25,11 @@
       "PLAYER_000011",
       "PLAYER_000010"
     ],
-    "tier": 2
+    "tier": 3
   },
   {
     "id": "TEAM_0003",
-    "name": "Digital Chaos",
+    "name": "DChaos",
     "abbreviatedName": "DC",
     "budget": 800000,
     "playersId": [
@@ -43,8 +43,8 @@
   },
   {
     "id": "TEAM_0004",
-    "name": "Wings Gaming",
-    "abbreviatedName": "Wings",
+    "name": "Wing",
+    "abbreviatedName": "Wing",
     "budget": 1000000,
     "playersId": [
       "PLAYER_000017",
@@ -57,8 +57,8 @@
   },
   {
     "id": "TEAM_0005",
-    "name": "(monkey) Business",
-    "abbreviatedName": "MB",
+    "name": "OGG",
+    "abbreviatedName": "OGG",
     "budget": 1000000,
     "playersId": [
       "PLAYER_000030",
@@ -85,8 +85,8 @@
   },
   {
     "id": "TEAM_0007",
-    "name": "Team Cloud",
-    "abbreviatedName": "TC",
+    "name": "Cloud",
+    "abbreviatedName": "Cloud",
     "budget": 180000,
     "playersId": [
       "PLAYER_000037",
@@ -110,20 +110,6 @@
       "PLAYER_000044"
     ],
     "tier": 4
-  },
-  {
-    "id": "TEAM_0009",
-    "name": "MVP",
-    "abbreviatedName": "MVP",
-    "budget": 300000,
-    "playersId": [
-      "PLAYER_000009",
-      "PLAYER_000047",
-      "PLAYER_000048",
-      "PLAYER_000049",
-      "PLAYER_000046"
-    ],
-    "tier": 2
   },
   {
     "id": "TEAM_0010",
@@ -169,7 +155,7 @@
   },
   {
     "id": "TEAM_0013",
-    "name": "Team Liquid",
+    "name": "Liquid",
     "abbreviatedName": "Liquid",
     "budget": 900000,
     "playersId": [
@@ -193,7 +179,7 @@
       "PLAYER_000074",
       "PLAYER_000075"
     ],
-    "tier": 3
+    "tier": 2
   },
   {
     "id": "TEAM_0015",
@@ -208,5 +194,89 @@
       "PLAYER_000080"
     ],
     "tier": 3
+  },
+  {
+    "id": "TEAM_0016",
+    "name": "compLex Game",
+    "abbreviatedName": "compLex",
+    "budget": 220000,
+    "playersId": [
+      "PLAYER_000081",
+      "PLAYER_000082",
+      "PLAYER_000083",
+      "PLAYER_000084",
+      "PLAYER_000085"
+    ],
+    "tier": 4
+  },
+  {
+    "id": "TEAM_0017",
+    "name": "Vegan",
+    "abbreviatedName": "Vegan",
+    "budget": 200000,
+    "playersId": [
+      "PLAYER_000086",
+      "PLAYER_000087",
+      "PLAYER_000088",
+      "PLAYER_000089",
+      "PLAYER_000023"
+    ],
+    "tier": 4
+  },
+  {
+    "id": "TEAM_0018",
+    "name": "Team VGG",
+    "abbreviatedName": "VGG",
+    "budget": 740000,
+    "playersId": [
+      "PLAYER_000090",
+      "PLAYER_000091",
+      "PLAYER_000092",
+      "PLAYER_000093",
+      "PLAYER_000094"
+    ],
+    "tier": 2
+  },
+  {
+    "id": "TEAM_0019",
+    "name": "HOME",
+    "abbreviatedName": "HOME",
+    "budget": 500000,
+    "playersId": [
+      "PLAYER_000114",
+      "PLAYER_000115",
+      "PLAYER_000116",
+      "PLAYER_000117",
+      "PLAYER_000118"
+    ],
+    "tier": 3
+  },
+  {
+    "id": "TEAM_0009",
+    "name": "Invictus",
+    "abbreviatedName": "IV",
+    "budget": 500000,
+    "playersId": [
+      "PLAYER_000111",
+      "PLAYER_000119",
+      "PLAYER_000120",
+      "PLAYER_000121",
+      "PLAYER_000122"
+    ],
+    "tier": 4
+  },
+  {
+    "id": "TEAM_0020",
+    "name": "Wanted",
+    "abbreviatedName": "Wanted",
+    "budget": 450000,
+    "playersId": [
+      "PLAYER_000128",
+      "PLAYER_000047",
+      "PLAYER_000129",
+      "PLAYER_000130",
+      "PLAYER_000096"
+    ],
+    "tier": 4
   }
 ]
